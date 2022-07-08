@@ -1,0 +1,62 @@
+<div class="container">  
+    
+  <form [formGroup]="empForm" (ngSubmit)="Save()">  
+      
+      <h3>Employee Table CRUD Operation</h3>  
+      <div class="row">  
+           
+      <table class="table">  
+      <tr>  
+        <td>Firstname</td>  
+        <td>  
+          <input type="hidden" formControlName="empId">  
+          <input type="text" formControlName="FirstName">  
+          <div *ngIf="submitted &&  empForm.controls['FirstName'].errors" class="text-danger">  
+            <div *ngIf="empForm.controls['FirstName'].errors['required']">Name is required</div>  
+          </div>   
+        </td>  
+      </tr>  
+        
+      <tr>  
+        <td>Lastname</td>  
+        <td><input type="text" formControlName="LastName">  
+          <div *ngIf="submitted && empForm.controls['LastName'].errors" class="text-danger">  
+            <div *ngIf="empForm.controls['LastName'].errors['required']">LastName is required</div>  
+          </div>   
+        </td>  
+      </tr>  
+      <tr>  
+        <td>Email</td>  
+        <td>  
+          <input type="text" formControlName="Email">  
+          <div *ngIf="submitted && empForm.controls['Email'].errors" class="text-danger">  
+            <div *ngIf="empForm.controls['Email'].errors['required']">Email is required</div>  
+          </div>  
+        </td>  
+      </tr>  
+     
+      <tr>  
+    
+        <td colspan="2">  
+          <button type="submit" class="btn btn-primary">{{EventValue}}</button>  
+        </td>  
+      </tr>  
+        
+    </table>  
+    </div>  
+       
+   <div class="row">  
+    <table class="table table-striped">  
+      <tr>  
+        <td>Id</td>  
+        <td>FirstName</td>  
+        <td>LastName</td>  
+        <td>Email</td>  
+      </tr>  
+    
+     
+    </table>  
+  </div>  
+  </form>  
+    
+  </div>  

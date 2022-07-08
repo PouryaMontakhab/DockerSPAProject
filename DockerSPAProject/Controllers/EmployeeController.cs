@@ -12,7 +12,7 @@ namespace DockerSPAProject.Controllers
         private readonly MyContext _context;
         public EmployeeController(MyContext context)
         {
-           this._context = context ?? throw new ArgumentNullException("context is null");
+            this._context = context ?? throw new ArgumentNullException("context is null");
         }
 
         [HttpGet]
@@ -28,7 +28,7 @@ namespace DockerSPAProject.Controllers
             var data = _context.Employees.Add(obj);
             _context.SaveChanges();
             return Ok();
-            
+
         }
 
         [HttpPut("{id}")]
