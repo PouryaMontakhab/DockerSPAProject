@@ -11,7 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContextPool<MyContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("EmployeeDbConnection")));
 builder.Services.AddSpaStaticFiles(configuration => {
-    configuration.RootPath = "FrontEnd/dist";
+    configuration.RootPath = "Front/dist";
 });
 
 var app = builder.Build();
@@ -36,7 +36,7 @@ app.MapControllers();
 app.UseSpaStaticFiles();
 app.UseSpa(spa =>
 {
-    spa.Options.SourcePath = "FrontEnd";
+    spa.Options.SourcePath = "Front";
 });
 
 app.Run();

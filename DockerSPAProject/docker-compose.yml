@@ -1,5 +1,4 @@
 version: '3.4'
-
 services:
   webapp:
     image: dockerspa
@@ -8,19 +7,19 @@ services:
       - "7143:7143"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://+:7143;http://+:5000
+      - ASPNETCORE_URLS=https://+:7143;http://+:80
       - ASPNETCORE_Kestrel__Certificates__Default__Password=admin@123
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    networks:   
+        - dockerspanetwork
     volumes:
       - ~/.aspnet/https:/https:ro
-    networks:
-        - dockerspanetwork
 
   sqldb:
-    container_name: sqlserver
-    image: "mcr.microsoft.com/azure-sql-edge"
+    image: "mcr.microsoft.com/mssql/server"
+    #image: "mcr.microsoft.com/azure-sql-edge"
     environment:
-          SA_PASSWORD: "Sudo@123"
+          SA_PASSWORD: "Admin@123"
           ACCEPT_EULA: "Y"
     ports:
          - "1433:1433"
@@ -29,3 +28,8 @@ services:
 
 networks:
     dockerspanetwork:
+
+
+
+#dotnet dev-certs https -ep ${home}\.aspnet\https\aspnetapp.pfx -p admin@123   >> use this command for create trust certificate
+

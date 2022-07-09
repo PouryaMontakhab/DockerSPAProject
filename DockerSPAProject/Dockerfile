@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 WORKDIR /app
-
+EXPOSE 7143
 # Copy everything
 COPY . ./
 # Restore as distinct layers
