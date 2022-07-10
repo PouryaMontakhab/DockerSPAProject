@@ -14,10 +14,11 @@ services:
         - dockerspanetwork
     volumes:
       - ~/.aspnet/https:/https:ro
+      - ./Data:/app
 
   sqldb:
-    image: "mcr.microsoft.com/mssql/server"
-    #image: "mcr.microsoft.com/azure-sql-edge"
+    #image: "mcr.microsoft.com/mssql/server"
+    image: "mcr.microsoft.com/azure-sql-edge"
     environment:
           SA_PASSWORD: "Admin@123"
           ACCEPT_EULA: "Y"
@@ -25,11 +26,19 @@ services:
          - "1433:1433"
     networks:
         - dockerspanetwork
+    volumes:
+        - backup:/var/opt/mssql/backups
+        - sqlserver:/var/opt/sqlserver
+        - mssql:/var/opt/mssql
 
 networks:
     dockerspanetwork:
 
 
+volumes:
+  backup:
+  sqlserver:
+  mssql:
 
 #dotnet dev-certs https -ep ${home}\.aspnet\https\aspnetapp.pfx -p admin@123   >> use this command for create trust certificate
 
