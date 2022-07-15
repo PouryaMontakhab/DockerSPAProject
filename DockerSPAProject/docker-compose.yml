@@ -14,7 +14,7 @@ services:
         - dockerspanetwork
     volumes:
       - ~/.aspnet/https:/https:ro
-      - ./Data:/app
+      - ~/Projects/DockerSPAProject/DockerSPAProject/bin/Release/net6.0/publish:/app
 
   sqldb:
     #image: "mcr.microsoft.com/mssql/server"
@@ -30,6 +30,15 @@ services:
         - backup:/var/opt/mssql/backups
         - sqlserver:/var/opt/sqlserver
         - mssql:/var/opt/mssql
+
+  frontapp:
+    image: front
+    container_name: frontapp
+    ports:
+        - "4200:4200"
+    networks:
+        - dockerspanetwork
+        
 
 networks:
     dockerspanetwork:
